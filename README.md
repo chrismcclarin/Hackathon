@@ -1,2 +1,2 @@
 # Hackathon
-Digital Equity and Accessibility
+GA Hackathon May 2023 - Digital Equity and Accessibility
