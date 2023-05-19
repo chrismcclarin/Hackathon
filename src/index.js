@@ -1,3 +1,5 @@
+import { translate } from './controllers/translate.js';
+
 import Express from 'express';
 
 /**
@@ -32,9 +34,11 @@ const listen = async () => {
 /**
  * Build the project requirements and initialize the application.
  */
-const build = () =>  {
+const build = async () =>  {
     // Setup port listener
     listen();
+
+    const test = await translate('My name is Dustin, this is cool', 'ar');
 }
 
 // Invoke the application start
