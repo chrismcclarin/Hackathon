@@ -1,4 +1,9 @@
 import Axios from 'axios';
+import Dotenv from 'dotenv';
+
+Dotenv.config();
+
+const { TRANSLATE_API_KEY } = process.env;
 
 /**
  * Header options for axios request.
@@ -8,7 +13,7 @@ const TRANSLATE_OPTIONS = {
     url: 'https://rapid-translate-multi-traduction.p.rapidapi.com/t',
     headers: {
       'content-type': 'application/json',
-      'X-RapidAPI-Key': '1dfb78dedemsh23c4e169197f0ccp1c71bbjsn88f151173c45',
+      'X-RapidAPI-Key': TRANSLATE_API_KEY,
       'X-RapidAPI-Host': 'rapid-translate-multi-traduction.p.rapidapi.com'
     },
     data: null

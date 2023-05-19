@@ -1,6 +1,10 @@
 import Express from 'express';
+import Dotenv from 'dotenv';
 
 import { ROUTES as TRANSLATE_ROUTER } from './routes/translate.js';
+
+// Configure the environment variables.
+Dotenv.config();
 
 /**
  * Bind the express instance.
@@ -10,7 +14,7 @@ const WEB_SERVER = Express();
 /**
  * Destructure environmental variables (defaults if none present).
  */
-const { PORT = 3000, APPLICATION_NAME = 'Nameless Project' } = process.env;
+const { PORT = 3000, APPLICATION_NAME = 'Nameless Project'} = process.env;
 
 /**
  * Binds the routers to the web server instance.
