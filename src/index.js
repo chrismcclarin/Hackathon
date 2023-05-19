@@ -3,6 +3,7 @@ import Dotenv from 'dotenv';
 import Mongoose from 'mongoose';
 
 import { ROUTES as TRANSLATE_ROUTER } from './routes/translate.js';
+import { ROUTES as ACCOUNT_ROUTER } from './routes/account.js';
 
 // Configure the environment variables.
 Dotenv.config();
@@ -23,6 +24,7 @@ const { PORT = 3000, APPLICATION_NAME = 'Nameless Project', DATABASE} = process.
 const bindRoutes = () => {
 
     WEB_SERVER.use('/translate', TRANSLATE_ROUTER());
+    WEB_SERVER.use('/account', ACCOUNT_ROUTER());
 }
 
 /**
