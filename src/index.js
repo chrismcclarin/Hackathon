@@ -1,6 +1,10 @@
-import { translate } from './controllers/translate.js';
-
 import Express from 'express';
+import Dotenv from 'dotenv';
+
+import { ROUTES as TRANSLATE_ROUTER } from './routes/translate.js';
+
+// Configure the environment variables.
+Dotenv.config();
 
 /**
  * Bind the express instance.
@@ -10,7 +14,15 @@ const WEB_SERVER = Express();
 /**
  * Destructure environmental variables (defaults if none present).
  */
-const { PORT = 3000, APPLICATION_NAME = 'Nameless Project' } = process.env;
+const { PORT = 3000, APPLICATION_NAME = 'Nameless Project'} = process.env;
+
+/**
+ * Binds the routers to the web server instance.
+ */
+const bindRoutes = () => {
+
+    WEB_SERVER.use('/translate', TRANSLATE_ROUTER());
+}
 
 /**
  * Construction method for binding middleware assets.
@@ -35,10 +47,12 @@ const listen = async () => {
  * Build the project requirements and initialize the application.
  */
 const build = async () =>  {
+    // Bind routes
+    bindRoutes();
+    // Bind middleware
+    bindMiddleware();
     // Setup port listener
     listen();
-
-    const test = await translate('My name is Dustin, this is cool', 'ar');
 }
 
 // Invoke the application start
