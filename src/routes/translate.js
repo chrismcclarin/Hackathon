@@ -1,12 +1,19 @@
 import Express from 'express';
 
-const CREATE_ROUTER = Express.Router();
+import { get } from '../controllers/translate-api.js';
 
+const TRANSLATE_ROUTER = Express.Router();
+
+/**
+ * Holds the route controllers for the translate endpoint API.
+ * 
+ * @returns 
+ */
 const ROUTES = () => {
 
-    CREATE_ROUTER.get('/');
+    TRANSLATE_ROUTER.get('/', get);
 
-    return CREATE_ROUTER;
+    return TRANSLATE_ROUTER;
 }
 
 export { ROUTES };
