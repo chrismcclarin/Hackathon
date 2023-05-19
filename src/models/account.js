@@ -11,6 +11,7 @@ const Schema = Mongoose.Schema;
 const ACCOUNT_SCHEMA = new Schema({
 
     credentials: {
+        
         username: {
             type: String,
             required: true
