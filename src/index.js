@@ -1,6 +1,12 @@
-import { translate } from './controllers/translate.js';
-
 import Express from 'express';
+import Dotenv from 'dotenv';
+import Mongoose from 'mongoose';
+
+import { ROUTES as TRANSLATE_ROUTER } from './routes/translate.js';
+import { ROUTES as ACCOUNT_ROUTER } from './routes/account.js';
+
+// Configure the environment variables.
+Dotenv.config();
 
 /**
  * Bind the express instance.
@@ -10,7 +16,16 @@ const WEB_SERVER = Express();
 /**
  * Destructure environmental variables (defaults if none present).
  */
-const { PORT = 3000, APPLICATION_NAME = 'Nameless Project' } = process.env;
+const { PORT = 3000, APPLICATION_NAME = 'Nameless Project', DATABASE} = process.env;
+
+/**
+ * Binds the routers to the web server instance.
+ */
+const bindRoutes = () => {
+
+    WEB_SERVER.use('/translate', TRANSLATE_ROUTER());
+    WEB_SERVER.use('/account', ACCOUNT_ROUTER());
+}
 
 /**
  * Construction method for binding middleware assets.
@@ -21,6 +36,23 @@ const bindMiddleware = () => {
     WEB_SERVER.use(Express.json);
 
     console.log(`${APPLICATION_NAME} - successfully bound middleware...`)
+}
+
+const connectDB = async () => {
+
+        // Deprecation suppression
+        Mongoose.set('strictQuery', false);
+
+        // Attempt to connect to the database
+        Mongoose.connect(DATABASE);
+    
+        // On successful connection to the database
+        Mongoose.connection.on('connected', () => {
+            console.log(`${APPLICATION_NAME} - MongoDB successfully connected...`);
+
+            // Setup port listener upon successful connection.
+            listen();
+        });
 }
 
 /**
@@ -35,10 +67,12 @@ const listen = async () => {
  * Build the project requirements and initialize the application.
  */
 const build = async () =>  {
-    // Setup port listener
-    listen();
-
-    const test = await translate('My name is Dustin, this is cool', 'ar');
+    // Bind routes
+    bindRoutes();
+    // Bind middleware
+    bindMiddleware();
+    // Connect to database
+    connectDB();
 }
 
 // Invoke the application start
