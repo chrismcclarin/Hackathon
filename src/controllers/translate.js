@@ -33,8 +33,8 @@ export const translate = async (input, language) => {
 
     const response = await Axios.request(TRANSLATE_OPTIONS);
 
-    console.log(`Original Input - ${input} [English]`);
-    console.log(`Translated Input - ${response.data[0]} [Arabic]`);
+    // console.log(`Original Input - ${input} [English]`);
+    // console.log(`Translated Input - ${response.data[0]} [Arabic]`);
 
     return response.data[0];
 }
