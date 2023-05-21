@@ -1,9 +1,11 @@
 import Express from 'express';
 import Dotenv from 'dotenv';
 import Mongoose from 'mongoose';
+import cors from "cors";
 
 import { ROUTES as TRANSLATE_ROUTER } from './routes/translate.js';
 import { ROUTES as ACCOUNT_ROUTER } from './routes/account.js';
+import { ROUTES as DATA_ROUTER } from './routes/data.js';
 
 // Configure the environment variables.
 Dotenv.config();
@@ -16,15 +18,17 @@ const WEB_SERVER = Express();
 /**
  * Destructure environmental variables (defaults if none present).
  */
-const { PORT = 3000, APPLICATION_NAME = 'Nameless Project', DATABASE} = process.env;
+const { PORT = 4000, APPLICATION_NAME = 'Nameless Project', DATABASE} = process.env;
 
 /**
  * Binds the routers to the web server instance.
  */
 const bindRoutes = () => {
-
-    WEB_SERVER.use('/translate', TRANSLATE_ROUTER());
+    
+    WEB_SERVER.use(cors());
+    // WEB_SERVER.use('/translate', TRANSLATE_ROUTER());
     WEB_SERVER.use('/account', ACCOUNT_ROUTER());
+    WEB_SERVER.use('/data', DATA_ROUTER());
 }
 
 /**
