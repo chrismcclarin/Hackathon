@@ -1,6 +1,6 @@
 import Express from 'express';
 
-import { get } from '../controllers/translate-api.js';
+import { get } from '../controllers/translated.js';
 
 const TRANSLATE_ROUTER = Express.Router();
 

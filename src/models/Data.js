@@ -6,7 +6,16 @@ import Mongoose from "mongoose";
 const Schema = Mongoose.Schema;
 
 const Data_SCHEMA = new Schema({
+
     Data:String,
 }, { timestamps: true });
 
 export default Mongoose.model('Data', Data_SCHEMA);
+
+    // Navbar: {
+    //     learn:String,
+    //     glossary:String,
+    //     about:String,
+    //     contact:String,
+    // },
+    // Landing: {
