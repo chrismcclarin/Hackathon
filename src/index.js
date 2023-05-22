@@ -6,7 +6,7 @@ import cors from "cors";
 import { ROUTES as TRANSLATE_ROUTER } from './routes/translate.js';
 import { ROUTES as ACCOUNT_ROUTER } from './routes/account.js';
 import { ROUTES as DATA_ROUTER } from './routes/data.js';
-import { ROUTES as SPANISH_ROUTER } from './routes/spanish.js';
+// import { ROUTES as SPANISH_ROUTER } from './routes/spanish.js';
 
 // Configure the environment variables.
 Dotenv.config();
