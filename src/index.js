@@ -15,6 +15,7 @@ Dotenv.config();
  * Bind the express instance.
  */
 const WEB_SERVER = Express();
+WEB_SERVER.use(cors());
 
 /**
  * Destructure environmental variables (defaults if none present).
@@ -26,7 +27,7 @@ const { PORT = 4000, APPLICATION_NAME = 'Nameless Project', DATABASE} = process.
  */
 const bindRoutes = () => {
     
-    WEB_SERVER.use(cors());
+
     WEB_SERVER.use('/account', ACCOUNT_ROUTER());
     WEB_SERVER.use('/en', DATA_ROUTER());
     WEB_SERVER.use('/es', TRANSLATE_ROUTER());
